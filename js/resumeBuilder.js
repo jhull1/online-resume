@@ -120,9 +120,9 @@ bio.display = function() {
     var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
     var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
     var formattedwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg);
-    $("#header").append(formattedName);
-    $("#header").append(formattedRole);
-    $("#header").prepend(formattedbioPic);
+    $("#header").prepend(formattedRole);
+    $("#header").prepend(formattedName);
+    $("#header").append(formattedbioPic);
     $("#topContacts, #footerContacts").append(formattedMobile);
     $("#topContacts, #footerContacts").append(formattedEmail);
     $("#topContacts, #footerContacts").append(formattedGithub);
