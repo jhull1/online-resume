@@ -64,6 +64,9 @@ h5 {
 
 }
 
+em {
+  color : #999;
+}
 
 .date-text {
   font-style: italic;

@@ -20,21 +20,21 @@ var education = {
             "degree": "Post-Bacc",
             "dates": "January 2012-May 2015",
             "location": "La Jolla, CA, USA",
-            "majors": "Biological Sciences"
+            "majors": ["Biological Sciences"],
         },
         {
             "name": "University of Notre Dame",
             "degree": "Bachelor of Science",
             "dates": "August 2007-May 2011",
             "location": "South Bend, IN, USA",
-            "majors": "Biological Sciences and Spanish",
+            "majors": ["Biological Sciences","Spanish"],
         },
         {
             "name": "Patrick Henry High School",
             "degree": "HS Diploma",
             "dates": "August 2003-June 2007",
             "location": "San Diego, CA, USA",
-            "majors": "n/a",
+            "majors": ["n/a"],
         },
     ],
     "onlineCourses": [{
@@ -94,7 +94,7 @@ var projects = {
             "title": "J and J Baking Co.",
             "dates": "May 2017",
             "description": "Responsive And Interactive Website for Cake Buisness",
-            "image": [
+            "images": [
                 "images/fry.jpg",
             ],
         },
@@ -102,7 +102,7 @@ var projects = {
             "title": "Health Tracker",
             "dates": "June 2017",
             "description": "An app that measures and records health stats",
-            "image": [
+            "images": [
                 "images/fry.jpg",
             ],
         },
@@ -123,9 +123,7 @@ bio.display = function() {
     $("#header").prepend(formattedRole);
     $("#header").prepend(formattedName);
     $("#header").append(formattedbioPic);
-    $("#topContacts, #footerContacts").append(formattedMobile);
-    $("#topContacts, #footerContacts").append(formattedEmail);
-    $("#topContacts, #footerContacts").append(formattedGithub);
+    $("#topContacts, #footerContacts").append(formattedMobile, formattedEmail, formattedGithub);
     $("#topContacts").append(formattedLocation);
     $("#header").append(formattedwelcomeMsg);
 
@@ -145,12 +143,15 @@ education.display = function() {
         var formattedschoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
         var formattedschoolDates = HTMLschoolDates.replace("%data%", school.dates);
         var formattedschoolLocation = HTMLschoolLocation.replace("%data%", school.location);
-        var formattedschoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
+        //var formattedschoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
         $(".education-entry:last").append(formattedschoolName);
         $(".education-entry:last").append(formattedschoolDegree);
         $(".education-entry:last").append(formattedschoolDates);
         $(".education-entry:last").append(formattedschoolLocation);
-        $(".education-entry:last").append(formattedschoolMajor);
+        for (var i = 0; i < school.majors.length; i++) {
+          var formattedschoolMajor = HTMLschoolMajor.replace("%data%", school.majors[i]);
+            $(".education-entry:last").append(formattedschoolMajor);
+        };
     });
     //online classes section
     $("#education").append(HTMLonlineClasses);
@@ -198,9 +199,9 @@ projects.display = function() {
         $(".project-entry:last").append(formattedDates);
         $(".project-entry:last").append(formattedDescription);
 
-        if (project.image.length > 0) { //loop to include images in array
-            project.image.forEach(function(image) {
-                var formattedImage = HTMLprojectImage.replace("%data%", project.image);
+        if (project.images.length > 0) { //loop to include images in array
+            project.images.forEach(function(image) {
+                var formattedImage = HTMLprojectImage.replace("%data%", project.images);
                 $(".project-entry:last").append(formattedImage);
             });
         }
